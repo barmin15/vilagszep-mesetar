@@ -1,4 +1,4 @@
-package org.vilagszep.servermesetar.config;
+package org.vilagszep.servermesetar.security;
 
 
 import com.auth0.jwt.JWT;
@@ -9,15 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
-import org.vilagszep.servermesetar.data.dto.UserDto;
+import org.vilagszep.servermesetar.data.dto.user.UserDto;
 import org.vilagszep.servermesetar.service.AuthService;
 import org.springframework.security.core.Authentication;
 
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.Date;
-import java.util.stream.Collectors;
+import java.util.*;
 
 import com.auth0.jwt.JWTVerifier;
 
@@ -53,8 +49,7 @@ public class UserAuthProvider {
         return new UsernamePasswordAuthenticationToken(
                 user,
                 null,
-                user.getRoles().stream()
-                        .map(SimpleGrantedAuthority::new).collect(Collectors.toSet())
+                Collections.singleton(new SimpleGrantedAuthority(user.getRole()))
         );
     }
 }

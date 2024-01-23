@@ -1,18 +1,15 @@
-package org.vilagszep.servermesetar.config;
+package org.vilagszep.servermesetar.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.vilagszep.servermesetar.security.UserRole;
 
 @RequiredArgsConstructor
 @Configuration
@@ -32,7 +29,12 @@ public class SecurityConfig {
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                        //.requestMatchers("/api/keyWord").hasAuthority("ADMIN")
+                        .requestMatchers("/api/admin/**").hasAuthority(UserRole.ADMIN.name())
+                        .requestMatchers("/api/storyBag/admin/**").hasAuthority(UserRole.ADMIN.name())
+                        .requestMatchers("/api/country/admin/**").hasAuthority(UserRole.ADMIN.name())
+                        .requestMatchers("/api/story/admin/**").hasAuthority(UserRole.ADMIN.name())
+                        .requestMatchers("/api/auth/admin/**").hasAuthority(UserRole.ADMIN.name())
+                        .requestMatchers("/api/user/admin/**").hasAuthority(UserRole.ADMIN.name())
                         .anyRequest().authenticated()
                 );
         return http.build();

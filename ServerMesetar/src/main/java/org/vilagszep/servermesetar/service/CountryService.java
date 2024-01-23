@@ -1,14 +1,15 @@
 package org.vilagszep.servermesetar.service;
 
 import org.springframework.stereotype.Service;
-import org.vilagszep.servermesetar.data.dto.CountryCultureDto;
+import org.vilagszep.servermesetar.data.dto.story.helper.CountryDto;
 
 import java.util.List;
 
+//this is an interface for a service. In case you want to add a new database, you can implement this
 @Service
-public interface CountryCultureService {
+public interface CountryService {
 
-    List<CountryCultureDto> getAll();
+    List<CountryDto> getAll();
 
-    CountryCultureDto create(CountryCultureDto countryCultureDto);
+    CountryDto create(CountryDto countryDto);
 }

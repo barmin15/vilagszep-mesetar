@@ -9,13 +9,15 @@ import lombok.*;
 import java.util.List;
 import java.util.UUID;
 
-@Entity(name = "country_cultures")
+//this (object) 'entity' is created as a reflection of the database table
+//an instance of this with data will represent a record of the table --using ORM
+@Entity(name = "countries")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class CountryCulture {
+public class Country {
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +26,13 @@ public class CountryCulture {
     @Column( unique = true, nullable = false)
     private String publicId;
 
-    private String countryCulture;
+    private String element;
 
-    @ManyToMany(mappedBy = "countryCultures")
+    @ManyToMany(mappedBy = "countries")
     @JsonBackReference
     private List<Story> stories;
 
+    //this method will generate a public id for a newly created element
     @PrePersist
     private void generatePublicId() {
         if (publicId == null) {

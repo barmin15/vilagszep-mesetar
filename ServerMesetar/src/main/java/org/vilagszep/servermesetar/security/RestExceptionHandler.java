@@ -1,4 +1,4 @@
-package org.vilagszep.servermesetar.config;
+package org.vilagszep.servermesetar.security;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

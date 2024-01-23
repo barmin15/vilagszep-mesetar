@@ -1,4 +1,4 @@
-package org.vilagszep.servermesetar.config;
+package org.vilagszep.servermesetar.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

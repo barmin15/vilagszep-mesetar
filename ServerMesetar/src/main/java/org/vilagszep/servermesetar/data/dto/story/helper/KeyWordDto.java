@@ -1,4 +1,4 @@
-package org.vilagszep.servermesetar.data.dto;
+package org.vilagszep.servermesetar.data.dto.story.helper;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+//this object is for sending and receiving Json data from the client
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -14,7 +15,7 @@ import java.util.UUID;
 public class KeyWordDto {
     private String publicId;
 
-    private String keyWord;
+    private String element;
 
 
 }
