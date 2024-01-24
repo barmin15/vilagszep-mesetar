@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //import reportWebVitals from "./config/reportWebVitals";
 
@@ -10,7 +10,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Login from "./unsecure/pages/Login";
 import Library from "./secure/pages/Libarary";
 import FavouriteStories from "./secure/pages/FavouriteStories"
-import Loading from "./unsecure/components/Loading";
 import Topnav from "./secure/components/Topnav";
 import Users from "./secure/pages/admin/Users";
 import Stories from "./secure/pages/admin/Stories";
@@ -63,11 +62,6 @@ const Router = createBrowserRouter([
       }
     ]
   },
-  {
-    path: "/loading",
-    element: <Loading />
-  }
-
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

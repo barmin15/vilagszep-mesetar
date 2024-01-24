@@ -1,0 +1,32 @@
+# Docker Compose file version: '3'
+services:
+  backend:
+    build: ./ServerMesetar
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      - DB_URL=jdbc:postgresql://database:5432/vilagszepdatabase
+      - DB_USERNAME=user
+      - DB_PASSWORD=password
+      - SECRET_KEY=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
+    # You can add other environment variables specific to the backend here
+
+
+    #!if you already have a database use this with your configuration
+    #environment:
+    # - DB_URL=jdbc:postgresql://localhost:5432/vilagszepMesetar
+    # - DB_USERNAME=postgres
+    # - DB_PASSWORD=Rozse211
+    # - SECRET_KEY=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
+
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_DB: vilagszepdatabase
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5555:5432

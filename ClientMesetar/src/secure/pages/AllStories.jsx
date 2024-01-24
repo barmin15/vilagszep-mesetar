@@ -4,10 +4,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getRequest } from "../../api/fetch";
 import {getFilterFromPath, getSearchFromPath} from "../../logic/filterLogic";
 import {  getContinents, getCopyRight, getAgeGroups } from "../../api/entityEnums";
+import { Box } from "@mui/material";
 import FilterElement from "../components/FilterElement";
 import StoryTable from "../components/StoryTable";
 import Loading from "../../unsecure/components/Loading";
-import { Box } from "@mui/material";
 
 //creating an array, with all the data, so you can map them in the return statement, for cleaner code
 //if more data is added, the first element is the array with the data, the second is the data name in the database, the third is what the client sees as a collective name
