@@ -1,29 +1,29 @@
-# Use the official Node image as the base image
-FROM node:14 as build
+# Use an official Node.js runtime as a parent image
+FROM node:18-alpine as client-builder
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy the package.json and package-lock.json (if available)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the entire client directory into the container
+# Copy the rest of the application code
 COPY . .
 
 # Build the React app
 RUN npm run build
 
-# Create a new image for the production build
-FROM nginx:alpine
+# Create a new image to serve the built files
+FROM node:18-alpine
 
-# Copy the build output to the NGINX public directory
-COPY --from=build /app/build ../ServerMesetar/src/main/resources/public/
+# Set the working directory in the container
+WORKDIR /app
 
-# Expose the port that NGINX will run on
-EXPOSE 80
+# Copy the built files from the client-builder stage
+COPY --from=client-builder /app/build /app/build
 
-# Start NGINX
-CMD ["nginx", "-g", "daemon off;"]
+# Specify the command to run on container start
+CMD ["npm", "start"]

@@ -1,7 +1,7 @@
 # Docker Compose file version: '3'
 services:
   backend:
-    build: ./ServerMesetar
+    build: .
     ports:
       - "8080:8080"
     depends_on:
@@ -20,7 +20,6 @@ services:
     # - DB_USERNAME=postgres
     # - DB_PASSWORD=Rozse211
     # - SECRET_KEY=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
-
 
   database:
     image: postgres
