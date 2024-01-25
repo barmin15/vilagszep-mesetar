@@ -7,6 +7,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
+      #if you already have a database comment this out
       - database
     environment:
       #add other environment variables specific to the backend here
@@ -22,6 +23,7 @@ services:
     # - SECRET_KEY=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
 
   #database
+  #if you already have a database comment this out
   database:
     image: postgres
     environment:
