@@ -3,23 +3,26 @@ export const getFilterFromPath = (path) => {
     const decodedPath = { field: "", filter: "" };
     let isAfterSearch = false;
     let isAfterField = false;
+    let counter = 0;
 
     for (let i = path.length - 1; i >= 0; i--) {
 
-        if(!isAfterSearch){
-            if(path[i] === "/"){
-                isAfterSearch = true;
+        if (!isAfterSearch) {
+            if (path[i] === "/") {
+                if(counter === 1) isAfterSearch = true;
+                counter += 1;
                 continue;
             } else continue;
         }
 
         if (isAfterSearch) {
-            if(path[i] === "="){
+            if (path[i] === "=") {
                 isAfterField = true;
                 continue;
             }
 
-            if(path[i] === "/") break;
+            if (path[i] === "/") break;
+
             if (isAfterField) {
                 decodedPath.field += path[i];
                 continue;
@@ -31,8 +34,11 @@ export const getFilterFromPath = (path) => {
 
     }
 
+
     decodedPath.filter = decodedPath.filter.split("").reverse().join("");
     decodedPath.field = decodedPath.field.split("").reverse().join("");
+    console.log(decodedPath)
+
     return decodedPath;
 }
 
@@ -42,10 +48,9 @@ export const getPublicIdFromPath = (path) => {
     let publicId = "";
 
     for (let i = path.length - 1; i >= 0; i--) {
-        if (path[i] === "=") break;
+        if (path[i] === "/") break;
         publicId += path[i];
     }
-
     return publicId.split("").reverse().join("");
 }
 

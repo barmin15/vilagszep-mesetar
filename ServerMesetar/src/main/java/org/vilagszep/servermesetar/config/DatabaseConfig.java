@@ -29,14 +29,15 @@ public class DatabaseConfig {
     private final CountryRepository countryRepository;
     private final static String NO_ELEMENT = "THIS_IS_FOR_ALL_ENTITIES";
 
+    private final String ADMIN_PASSWORD = System.getenv("ADMIN_PASSWORD");
+    private final String ADMIN_LOGIN = "admin";
+
     //this function will create adn admin user, if it's not already in the database
     @Transactional
     public void createAdmin() {
-        String login = "admin";
-        String password = "admin";
 
-        if (!userRepository.findByLogin(login).isPresent()) {
-            RegisterDto registerDto = RegisterDto.builder().login(login).password(password).role(UserRole.ADMIN.name()).build();
+        if (!userRepository.findByLogin(ADMIN_LOGIN).isPresent()) {
+            RegisterDto registerDto = RegisterDto.builder().login(ADMIN_LOGIN).password(ADMIN_PASSWORD).role(UserRole.ADMIN.name()).build();
 
             authController.registerUser(registerDto);
         }

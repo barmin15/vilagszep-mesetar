@@ -8,6 +8,7 @@ import { getStoryBody } from "../../../../api/entityEnums";
 
 //most components are styled with MUI elements, this one is styled with the addStory.css file
 import "../../../css/addStory.css";
+import { getLoginPage } from "../../../../api/endpoints";
 
 export default function AddStory({ isOpen }) {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function AddStory({ isOpen }) {
         if (isOpen) {
             getRequest("/api/story/titles")
                 .then(res => setTitles(res.data))
-                .catch(err => navigate("/"));
+                .catch(err => navigate(getLoginPage()));
         }
     }, [isOpen, navigate])
 
@@ -32,7 +33,7 @@ export default function AddStory({ isOpen }) {
         if (isValidRegisterStory(story, titles)) {
             request("POST", "/api/story/admin/create", story)
                 .then(res => window.location.reload(false))
-                .catch(err => navigate("/"));
+                .catch(err => navigate(getLoginPage()));
 
             //if the story's data is not properly set, an error snakcbar will appear, telling the client
         } else setIsNotValidRegisterStory(true);

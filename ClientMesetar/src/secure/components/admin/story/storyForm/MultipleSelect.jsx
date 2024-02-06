@@ -6,6 +6,7 @@ import ErrorSnackBar from '../../../../../unsecure/components/ErrorSnackBar';
 
 import AddIcon from '@mui/icons-material/Add';
 import { MenuItem, OutlinedInput, Select } from '@mui/material';
+import { getLoginPage } from '../../../../../api/endpoints';
 
 export default function MultipleSelect({
     //props from StoryForm.jsx component
@@ -20,7 +21,7 @@ export default function MultipleSelect({
         //fetching the elements
         getRequest(getApiEndpoint)
             .then(res => setAllSelectElements(res.data))
-            .catch(err => navigate("/"));
+            .catch(err => navigate(getLoginPage()));
     }, [getApiEndpoint, navigate])
 
     //when creating new elment this function willsend the element back to the server, where it will save it to the database
@@ -30,7 +31,7 @@ export default function MultipleSelect({
         if (element.length > 2 && !allSelectElements.map(word => word.element).includes(element)) {
             request("POST", postApiEndpoint, { element })
                 .then(res => onAddNewSelectElement(res.data))
-                .catch(err => navigate("/"));
+                .catch(err => navigate(getLoginPage()));
             setElement("");
         } else {
             setIsAlreadyIncluded(true);

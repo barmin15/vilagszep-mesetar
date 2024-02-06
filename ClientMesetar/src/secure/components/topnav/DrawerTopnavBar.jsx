@@ -19,6 +19,7 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search'
 
 import logo from "./logo.png"
+import { getHomePage, getSearchedStoriesPage } from '../../../api/endpoints';
 
 //width of the sidebar on ipad and mobile devices
 const drawerWidth = 240;
@@ -48,7 +49,7 @@ export default function DrawerTopnavBar({
             <Divider />
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton sx={{ textAlign: 'center' }} href="/app/mesetar">
+                    <ListItemButton sx={{ textAlign: 'center' }} href={getHomePage()}>
                         <ListItemText primary="otthon" />
                     </ListItemButton>
                 </ListItem>
@@ -67,8 +68,8 @@ export default function DrawerTopnavBar({
     function handleSearch(e) {
         //checking if search is not made of only whitespaces
         const isWhitespaceString = str => !str.replace(/\s/g, '').length;
-        if (isWhitespaceString(search)) navigate("/app/mesek/all")
-        else navigate("/app/mesek/" + search);
+        if (isWhitespaceString(search)) navigate(getSearchedStoriesPage("all"))
+        else navigate(getSearchedStoriesPage(search));
         setSearch("");
     }
 
@@ -100,7 +101,7 @@ export default function DrawerTopnavBar({
                 >
                     <img src={logo} alt="Logo" style={{ height: 55 }} />
 
-                    <Typography href="/app/mesetar" variant="h6" noWrap component="div" onClick={(e) => navigate("/app/mesetar")} sx={{
+                    <Typography href="/vilagszep/mesetar/app/otthon" variant="h6" noWrap component="div" onClick={(e) => navigate(getHomePage())} sx={{
                         cursor: "pointer",
                         mr: 2,
                         zIndex: 2,

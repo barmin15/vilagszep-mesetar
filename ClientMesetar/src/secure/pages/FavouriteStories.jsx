@@ -7,6 +7,7 @@ import StoryTable from "../components/StoryTable";
 import Loading from "../../unsecure/components/Loading";
 
 import { Box, Typography } from "@mui/material";
+import { getLoginPage } from "../../api/endpoints";
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Profile() {
     useEffect(() => {
         getRequest(`/api/user/likedStories/${getUserPublicId()}`)
             .then((res) => setStories(res.data))
-            .catch((err) => navigate("/login"));
+            .catch((err) => navigate(getLoginPage()));
     }, [navigate]);
 
     //rendering the favourite stories via the StoryTable child component

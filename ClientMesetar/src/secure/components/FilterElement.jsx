@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { getLoginPage } from '../../api/endpoints';
 
 //props from the parent element (AllStories.jsx)
 export default function FilterElement({ element, setElement, getRequestApi, label, elements, objectKey }) {
@@ -18,7 +19,7 @@ export default function FilterElement({ element, setElement, getRequestApi, labe
     if (getRequestApi) {
       getRequest(getRequestApi)
         .then(res => setAllElements(res.data.map(elem => elem.element)))
-        .catch(err => navigate("/login"));
+        .catch(err => navigate(getLoginPage()));
     } else {
       setAllElements(elements);
     }

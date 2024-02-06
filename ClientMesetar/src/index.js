@@ -16,48 +16,57 @@ import Stories from "./secure/pages/admin/Stories";
 import Story from "./secure/pages/Story";
 import AllStories from "./secure/pages/AllStories";
 
+//endpoints
+import {
+  getFavouritesPage,
+  getLoginPage,
+  getAppBarPage,
+  getHomePage,
+  getSearchedStoriesPage,
+  getStoryPage,
+  getFilteredAndSearchedStoriesPage,
+  getStoriesForAdmin,
+  getUsersForAdminPage
+} from "./api/endpoints";;
+
 //router to display pages on different endpoints
 //if you want to add a new page, where the topnav bar is visible on the top, add it as a child of the topnavBar, and create the endpoint for it, starting with '/app'
 //all the routes that have admin in the path, can only be opened by users with ADMIN role
 const Router = createBrowserRouter([
   {
-    path: "/",
+    path: getLoginPage(),
     element: <Login />
   },
   {
-    path: "/login",
-    element: <Login />
-  },
-  {
-    path: "/app",
+    path: getAppBarPage(),
     element: <Topnav />,
     children: [
       {
-        path: "/app/mesetar",
+        path: getHomePage(),
         element: <Library />
       },
       {
-        path: "/app/mesek/:search",
+        path: getSearchedStoriesPage(),
         element: <AllStories />
       },
       {
-        path: "/app/profil",
+        path: getFavouritesPage(),
         element: <FavouriteStories />
       },
       {
-        path: "/app/mese/:publicId",
+        path: getStoryPage(),
         element: <Story />
       },
       {
-        path: "/app/admin/felhasznalok",
+        path: getUsersForAdminPage(),
         element: <Users />
       },
       {
-        path: "/app/admin/mesek",
+        path: getStoriesForAdmin(),
         element: <Stories />
       },
       {
-        path: "/app/mesek/:filter/:search",
+        path: getFilteredAndSearchedStoriesPage(),
         element: <AllStories />
       }
     ]

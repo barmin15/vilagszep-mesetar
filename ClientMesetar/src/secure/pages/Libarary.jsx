@@ -12,6 +12,7 @@ import "../css/keyWordCard.css";
 
 //MUI import
 import { Box } from "@mui/system";
+import { getLoginPage } from "../../api/endpoints";
 
 export default function Library() {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function Library() {
             setSuccess(true);
             getRequest(api[0])
                 .then(res => api[1](res.data.map(elem => elem.element)))
-                .catch(err => navigate("/login"))
+                .catch(err => navigate(getLoginPage))
         })
 
     }, [navigate])
@@ -51,7 +52,7 @@ export default function Library() {
                 <div className="cardHeader">{header[0]}</div>
                 <div className="cardBody">
                     <ul className="word-container">
-                        {header[1].map((word, i) => <li key={i} className="listed-items"><a href={'/app/mesek/' + header[2] + '=' + word + "/all"} className="item">{word.replaceAll("_", " ")}</a>, </li>)}
+                        {header[1].map((word, i) => <li key={i} className="listed-items"><a href={'/vilagszep/mesetar/app/mesek/filter/' + header[2] + '=' + word + "/search/all"} className="item">{word.replaceAll("_", " ")}</a>, </li>)}
                     </ul>
                 </div>
             </div>

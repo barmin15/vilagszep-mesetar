@@ -7,6 +7,7 @@ import { StoryForm } from './storyForm/StoryForm';
 import Loading from "../../../../unsecure/components/Loading";
 //CSS import
 import "../../../css/addStory.css";
+import { getLoginPage } from "../../../../api/endpoints";
 
 //!!!!most components are styled with MUI elements, this is styled with the addStory.css file!!!!
 export default function AddStory({ publicId, isOpen }) {
@@ -23,7 +24,7 @@ export default function AddStory({ publicId, isOpen }) {
         if (isOpen) {
             getRequest("/api/story/titles")
                 .then(res => setTitles(res.data))
-                .catch(err => navigate("/login"));
+                .catch(err => navigate(getLoginPage()));
 
             getRequest(`/api/story/admin/${publicId}`)
                 .then(res => {
@@ -33,7 +34,7 @@ export default function AddStory({ publicId, isOpen }) {
                     res.data.countries = res.data.countries.map(elem => elem.element);
                     setStory(res.data);
                 })
-                .catch(err => navigate("/login"));
+                .catch(err => navigate(getLoginPage()));
         }
     }, [isOpen, navigate, publicId]);
 
@@ -45,7 +46,7 @@ export default function AddStory({ publicId, isOpen }) {
         if (isValidRegisterStory(story, titles.filter(e => e !== previousTitle))) {
             request("PUT", `/api/story/admin/${publicId}`, story)
                 .then(res => window.location.reload(false))
-                .catch(err => navigate("/login"));
+                .catch(err => navigate(getLoginPage()));
 
             //in case a story's data is not ready, an error bar will pop up      
         } else setIsNotValidRegisterStory(true);

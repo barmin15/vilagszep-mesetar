@@ -1,4 +1,4 @@
-# all te services can be ran here
+# all the services can be ran here
 # be in this directory and create/run the image with the *docker-compose up* command
 services:
   #server
@@ -14,16 +14,22 @@ services:
       - DB_URL=jdbc:postgresql://database:5432/vilagszepdatabase
       - DB_USERNAME=user
       - DB_PASSWORD=password
+      #you don't need to change the secret key
+      #this is for hashing the password--this is a safe value to hash with
       - SECRET_KEY=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
-    #!if you already have a database use this with your configuration intead of the one on above
+      #change the admin password for whatever you want
+      #better to change ut for something more secure
+      - ADMIN_PASSWORD=admin
+    #!if you already have a database use this with your configuration intead of the one above
     #environment:
-    # - DB_URL=jdbc:postgresql://roundhouse.proxy.rlwy.net:37357/railway
-    # - DB_USERNAME=postgres
-    # - DB_PASSWORD=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
-    # - SECRET_KEY=3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
+    # - DB_URL= database url such as : jdbc:postgresql://roundhouse.proxy.rlwy.net:37357/railway
+    # - DB_USERNAME= database password such as : postgres
+    # - DB_PASSWORD= database password such as : 3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
+    # - SECRET_KEY= seceret key : 3FBbB41C62GCFgaD*gc5G3c1Fec3-CCD
 
-  #database
-  #if you already have a database comment this out
+    #database
+    #if you already have a database comment this out
+    #!better to have your own database, to not lose any data
   database:
     image: postgres
     environment:

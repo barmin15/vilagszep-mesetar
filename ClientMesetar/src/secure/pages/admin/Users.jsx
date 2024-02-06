@@ -15,6 +15,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
+import { getLoginPage, getStoriesForAdmin } from "../../../api/endpoints";
 
 export default function Users() {
     const navigate = useNavigate();
@@ -35,14 +36,14 @@ export default function Users() {
         getRequest("/api/user/admin")
             .then(res => setUsers(res.data))
             .catch(err => {setIsNotAdmin(true);});
-    }, [navigate])
+    }, [])
 
     //this function will handle the fetch to delete users
     //!!!!only users with ADMIN role can delete 
     function deleteUser() {
         request("DELETE", `/api/user/admin/${deleteUserPublicId}`)
             .then(res => window.location.reload(false))
-            .catch(err => navigate("/login"))
+            .catch(err => navigate(getLoginPage()))
     }
 
     //this function will handle the click event to delete a user
@@ -85,7 +86,7 @@ export default function Users() {
                 setErrorCreateText={setErrorCreateText}
                 setIsnotCreated={setIsnotCreated}
             />
-            <Button onClick={(e) => navigate("/app/admin/mesek")} variant='contained' sx={{ top: "75vh", float: "left", left: "5%" }}>Mesékhez <NavigateNextIcon /></Button>
+            <Button onClick={(e) => navigate(getStoriesForAdmin())} variant='contained' sx={{ top: "75vh", float: "left", left: "5%" }}>Mesékhez <NavigateNextIcon /></Button>
             <Fab color="primary" aria-label="add" sx={{ top: "75vh", float: "right", right: "5%" }} onClick={(e) => setNewUser(true)}>
                 <AddIcon />
             </Fab>

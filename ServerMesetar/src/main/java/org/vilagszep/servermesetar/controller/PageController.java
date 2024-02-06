@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/login")
+    @GetMapping("/vilagszep/mesetar/**")
     public String getLoginPage(){return "forward:/index.html";}
-
-    @GetMapping("/app/**")
-    public String getAppPage(){return "forward:/index.html";}
 }

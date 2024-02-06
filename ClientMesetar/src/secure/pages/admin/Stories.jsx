@@ -13,6 +13,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { Button, Fab } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import Backdrop from '@mui/material/Backdrop';
+import { getLoginPage, getUsersForAdminPage } from "../../../api/endpoints";
 
 
 export default function Stories() {
@@ -28,14 +29,14 @@ export default function Stories() {
     useEffect(() => {
         getRequest("/api/story/admin")
             .then(res => setStories(res.data))
-            .catch(err => navigate("/"));
+            .catch(err => navigate(getLoginPage()));
     }, [navigate])
 
     //this function handles the event, when the client clicks to delete a story
     function handleDeleteStory(publicId) {
         request("DELETE", `/api/story/admin/${publicId}`)
             .then(res => window.location.reload(false))
-            .catch(err => navigate("/"));
+            .catch(err => navigate(getLoginPage()));
     }
 
     //inserting elements to the vertual DOM
@@ -59,7 +60,7 @@ export default function Stories() {
 
         </Backdrop>
         <StoriesTable stories={stories} setIsEditStory={setIsEditStory} setSelectedStoryPublicId={setSelectedStoryPublicId} handleDeleteStory={handleDeleteStory} />
-        <Button onClick={(e) => navigate("/app/admin/felhasznalok")} variant='contained' sx={{ top: "75vh", float: "left", left: "5%" }}><NavigateBeforeIcon />Felhasználókhoz</Button>
+        <Button onClick={(e) => navigate(getUsersForAdminPage())} variant='contained' sx={{ top: "75vh", float: "left", left: "5%" }}><NavigateBeforeIcon />Felhasználókhoz</Button>
         <Fab color="primary" aria-label="add" sx={{ top: "75vh", float: "right", right: "5%" }} onClick={(e) => setIsNewStory(true)}>
             <AddIcon />
         </Fab>

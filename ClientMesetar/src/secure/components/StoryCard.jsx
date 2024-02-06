@@ -4,6 +4,7 @@ import SuccessSnackBar from "../../unsecure/components/SuccessSnackBar"
 import { request } from "../../api/fetch";
 import { getUserPublicId } from '../../logic/localStorage';
 import { useNavigate } from "react-router-dom"
+import { getLoginPage } from '../../api/endpoints';
 
 export default function StoryCard({ story }) {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function StoryCard({ story }) {
         e.preventDefault();
         request("POST", `/api/user/likeStory/${story.publicId}/${getUserPublicId()}`, {})
             .then(res => setIsLiked(!isLiked))
-            .catch(err => navigate("/login"));
+            .catch(err => navigate(getLoginPage()));
     }
 
     //inserting elements into the vertual DOM

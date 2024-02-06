@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/story/admin/**").hasAuthority(UserRole.ADMIN.name())
                         .requestMatchers("/api/auth/admin/**").hasAuthority(UserRole.ADMIN.name())
                         .requestMatchers("/api/user/admin/**").hasAuthority(UserRole.ADMIN.name())
-                        .requestMatchers("/", "/login", "/app/**").permitAll()
+                        .requestMatchers("/vilagszep/mesetar/**").permitAll()
                         .requestMatchers( "/index.html", "/favicon.ico", "/static/css/**", "/static/js/**", "/static/media/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .anyRequest().authenticated()

@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
+import { getStoryPage } from '../../api/endpoints';
 
 //this child component has multiple parent components, since the story table is rendered and called on multiple pages
 //if you change something, make sure it doesnt interfere with the other pages
@@ -19,7 +20,7 @@ export default function StoryTable({ stories }) {
   //it will navigate to a different page
   function onViewStory(e, publicId) {
     e.preventDefault();
-    navigate(`/app/mese/publicId=${publicId}`);
+    navigate(getStoryPage(publicId));
   }
 
   //this table was made to be responsive. the xs-tag is for mobile phones, the sm-tag is for other (with more pixels) devices

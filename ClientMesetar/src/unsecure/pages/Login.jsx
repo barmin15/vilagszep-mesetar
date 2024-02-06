@@ -6,6 +6,7 @@ import { request } from '../../api/fetch';
 import { deleteAuthToken, deleteUserLogin, deleteUserPublicId, setAuthToken, setUserLogin, setUserPublicId } from '../../logic/localStorage';
 
 import ErrorSnackBar from "../components/ErrorSnackBar";
+import { getHomePage } from '../../api/endpoints';
 
 export default function Login() {
     //states for data needed to store in memory
@@ -47,7 +48,7 @@ export default function Login() {
                 setUserPublicId(response.data.publicId);
                 setUserLogin(response.data.login);
                 setAuthToken(response.data.token);
-                navigate("/app/mesetar")
+                navigate(getHomePage())
             })
             .catch(err => setError(true));
     }

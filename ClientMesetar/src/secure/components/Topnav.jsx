@@ -4,6 +4,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { deleteAuthToken, deleteUserLogin } from "../../logic/localStorage";
 import InputBase from '@mui/material/InputBase';
 import DrawerTopnavBar from './topnav/DrawerTopnavBar';
+import { getFavouritesPage, getLoginPage, getSearchedStoriesPage, getUsersForAdminPage } from '../../api/endpoints';
 
 
 //searching position
@@ -54,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Topnav() {
   //if you want to add more pages to navigate to from the TopnavBa:
   //simply add another array, 0th element the text, and 1st is the page to navigate to
-  const pages = [["mesék", "/app/mesek/all"],['kedvencek', '/app/profil'], ["admin", "/app/admin/felhasznalok"], ['kijelentkezés', '/login']];
+  const pages = [["mesék", getSearchedStoriesPage("all")],['kedvencek', getFavouritesPage()], ["admin", getUsersForAdminPage()], ['kijelentkezés', getLoginPage()]];
 
   //just security measure
   //when logging out, delete all app related elements from the sessionStorage
