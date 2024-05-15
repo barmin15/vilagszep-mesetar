@@ -37,8 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/vilagszep/mesetar/**").permitAll()
                         .requestMatchers( "/index.html", "/favicon.ico", "/static/css/**", "/static/js/**", "/static/media/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                        .anyRequest().authenticated()
-                );
+                        .anyRequest().authenticated());
         return http.build();
     }
 }

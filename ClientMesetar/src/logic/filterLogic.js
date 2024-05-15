@@ -37,7 +37,6 @@ export const getFilterFromPath = (path) => {
 
     decodedPath.filter = decodedPath.filter.split("").reverse().join("");
     decodedPath.field = decodedPath.field.split("").reverse().join("");
-    console.log(decodedPath)
 
     return decodedPath;
 }

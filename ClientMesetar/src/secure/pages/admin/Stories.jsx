@@ -15,7 +15,6 @@ import AddIcon from '@mui/icons-material/Add';
 import Backdrop from '@mui/material/Backdrop';
 import { getLoginPage, getUsersForAdminPage } from "../../../api/endpoints";
 
-
 export default function Stories() {
     const navigate = useNavigate();
     //states

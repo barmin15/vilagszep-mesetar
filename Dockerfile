@@ -1,8 +1,7 @@
 # Stage 1: Build the React frontend
 FROM node:18 AS frontend-builder
 
-WORKDIR /app
-
+WORKDIR /appfileokban
 # Copy only the necessary files for npm install to take advantage of Docker cache
 COPY ClientMesetar/ .
 
@@ -25,7 +24,7 @@ RUN mvn dependency:go-offline
 COPY ServerMesetar/ .
 
 # Copy the built frontend files into the backend resources/public directory
-COPY --from=frontend-builder /app/build /app/src/main/resources/public
+COPY --from=frontend-builder /appfileokban/build /app/src/main/resources/public
 
 # Build the Spring Boot app
 RUN mvn clean package

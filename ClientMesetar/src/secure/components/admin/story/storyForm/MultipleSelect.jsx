@@ -1,4 +1,3 @@
-//imports
 import { useState, useEffect } from 'react';
 import { request, getRequest } from '../../../../../api/fetch';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +23,7 @@ export default function MultipleSelect({
             .catch(err => navigate(getLoginPage()));
     }, [getApiEndpoint, navigate])
 
-    //when creating new elment this function willsend the element back to the server, where it will save it to the database
+    //when creating new element this function will send the element back to the server, where it will save it to the database
     function onAddSelectElement(e) {
         e.preventDefault();
 
@@ -64,7 +63,14 @@ export default function MultipleSelect({
         setIsAlreadyIncluded(false);
     };
 
-    //inserting elements to the vertual DOM
+    //handle pressing Enter key
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            onAddSelectElement(event);
+        }
+    };
+
+    //inserting elements to the virtual DOM
     return <>
         <label className="label">{mainText}</label><label className="halfLabel">{secondaryText}</label><br />
         <Select
@@ -75,11 +81,11 @@ export default function MultipleSelect({
             input={<OutlinedInput label="Multiple Select" />}
         >
             {allSelectElements?.map((elem) => (
-                    <MenuItem key={elem.publicId} value={elem.element} sx={{ '&:hover': { bgcolor: '#EEF5FF' } }}>
-                        {elem.element}
-                    </MenuItem>))}
+                <MenuItem key={elem.publicId} value={elem.element} sx={{ '&:hover': { bgcolor: '#EEF5FF' } }}>
+                    {elem.element}
+                </MenuItem>))}
         </Select>
-        <input className="halfInputWithButton" value={element} onChange={(e) => setElement(e.target.value)} />
+        <input className="halfInputWithButton" value={element} onChange={(e) => setElement(e.target.value)} onKeyPress={handleKeyPress} />
         <div className="addHalfInput" onClick={onAddSelectElement}>
             <AddIcon sx={{ color: "black", "&:hover": { color: "blue", cursor: "pointer" } }}></AddIcon>
         </div>

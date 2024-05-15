@@ -40,7 +40,7 @@ export default function StoryTable({ stories }) {
         <TableHead sx={{ backgroundColor: "#4B79A1", }}>
           <TableRow>
             <TableCell align="center" sx={{ fontSize: 16, width: { xs: '20%', sm: '25%' }, backgroundColor: "#4B79A1", color: 'white' }}>Cím</TableCell>
-            <TableCell align="center" sx={{ fontSize: 15, width: { xs: '20%', sm: '25%' }, backgroundColor: "#4B79A1", color: 'white' }}>Jogállás</TableCell>
+            <TableCell align="center" sx={{ fontSize: 15, width: { xs: '20%', sm: '25%' }, backgroundColor: "#4B79A1", color: 'white' }}>Korosztály</TableCell>
             <TableCell align="right" sx={{ fontSize: 15, width: { xs: '20%', sm: '25%' }, backgroundColor: "#4B79A1", color: 'white' }}>Elolvasom</TableCell>
           </TableRow>
         </TableHead>
@@ -50,7 +50,7 @@ export default function StoryTable({ stories }) {
               <TableCell component="th" scope="row" align="center" sx={{ fontSize: 15, width: '25%' }}>
                 {story.title}
               </TableCell>
-              <TableCell align="center" sx={{ width: '25%' }}>{story.copyRight.replaceAll('_', ' ')}</TableCell>
+              <TableCell align="center" sx={{ width: '25%' }}>{story.ageGroup.replaceAll('_', ' ')}</TableCell>
               <TableCell align="right">
                 <VisibilityIcon
                   onClick={(e) => onViewStory(e, story.publicId)}

@@ -27,6 +27,7 @@ public class DatabaseConfig {
     private final KeyWordRepository keyWordRepository;
     private final StoryBagRepository storyBagRepository;
     private final CountryRepository countryRepository;
+
     private final static String NO_ELEMENT = "THIS_IS_FOR_ALL_ENTITIES";
 
     private final String ADMIN_PASSWORD = System.getenv("ADMIN_PASSWORD");
@@ -35,8 +36,7 @@ public class DatabaseConfig {
     //this function will create adn admin user, if it's not already in the database
     @Transactional
     public void createAdmin() {
-
-        if (!userRepository.findByLogin(ADMIN_LOGIN).isPresent()) {
+        if (userRepository.findByLogin(ADMIN_LOGIN).isEmpty()) {
             RegisterDto registerDto = RegisterDto.builder().login(ADMIN_LOGIN).password(ADMIN_PASSWORD).role(UserRole.ADMIN.name()).build();
 
             authController.registerUser(registerDto);

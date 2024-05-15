@@ -15,6 +15,6 @@ END $ $;
 \ c vilagszepdatabase;
 
 -- Create a user and grant privileges
-CREATE USER user WITH PASSWORD 'password';
+CREATE USER user WITH PASSWORD 'uC&$@xs+f8hh3hKm';
 
 GRANT ALL PRIVILEGES ON DATABASE vilagszepdatabase TO user;

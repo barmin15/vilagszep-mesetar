@@ -29,12 +29,10 @@ export default function AddStory({ isOpen }) {
     //this function handles the event when a client clicks to create a new story
     function onSubmit(e) {
         e.preventDefault();
-
         if (isValidRegisterStory(story, titles)) {
-            request("POST", "/api/story/admin/create", story)
-                .then(res => window.location.reload(false))
-                .catch(err => navigate(getLoginPage()));
-
+                request("POST", "/api/story/admin/create", story)
+                    .then(res => window.location.reload(false))
+                    .catch(err => navigate(getLoginPage()));
             //if the story's data is not properly set, an error snakcbar will appear, telling the client
         } else setIsNotValidRegisterStory(true);
     }

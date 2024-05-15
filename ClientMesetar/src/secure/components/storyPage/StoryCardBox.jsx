@@ -109,7 +109,7 @@ export function StoryCardBox({
                             sm: 16
                         },
                         paddingBottom: 15
-                    }}>{story.text}</Typography>
+                    }}><pre style={{ whiteSpace: 'pre-wrap',fontFamily: 'Arial, sans-serif', fontSize: 17.5}}>{story.text}</pre></Typography>
                 </>
             )}
         </>

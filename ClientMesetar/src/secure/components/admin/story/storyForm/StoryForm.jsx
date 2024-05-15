@@ -56,7 +56,7 @@ export function StoryForm({
 
       <div className="rowContainer">
 
-        <MultipleSelect elem={"storyBags"} story={story} selectElements={story.storyBags} setStory={setStory} postApiEndpoint={"/api/storyBag/admin/add"} getApiEndpoint={"/api/storyBag"} errorText={"Ez a mesetarisznya már létezik"} mainText={"Mesetarisnyák"} secondaryText={"Adj hozzá újat"} />
+        <MultipleSelect elem={"storyBags"} story={story} selectElements={story.storyBags} setStory={setStory} postApiEndpoint={"/api/storyBag/admin/add"} getApiEndpoint={"/api/storyBag"} errorText={"Ez a mesetarisznya már létezik"} mainText={"Mesetarisznyák"} secondaryText={"Adj hozzá újat"} />
         <br />
       </div>
 
@@ -106,7 +106,7 @@ export function StoryForm({
       </div>
       <div className="rowContainer">
         <label htmlFor="story" className="label">Mese szövege</label> <br />
-        <input className="simpleInput" type="text" id="story" name="text" placeholder="Mese szövege.." value={story.text} onChange={handleFormInput} />
+        <textarea className="textInput" id="story" name="text" placeholder="Mese szövege.." value={story.text} onChange={handleFormInput}></textarea>
         <br />
       </div>
       <div className="buttonContainer">
@@ -119,6 +119,7 @@ export function StoryForm({
           left: 15
         }} color="primary" size="large" variant="contained" onClick={onCancel}> MÉGSE</Button>
       </div>
+    
     </form>
     <ErrorSnackBar open={isNotValidRegisterStory} handleClose={handleErrorCreate} text={"Létezik már ilyen cím, vagy valami nem lett minden kitöltve"} />
   </div>;

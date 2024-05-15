@@ -67,7 +67,7 @@ export default function StoriesTable({ stories, setIsEditStory, setSelectedStory
                         width: { xs: "20%", sm: "25%" },
                         backgroundColor: "#49789F",
                         color: "white"
-                    }}>Jogállás:</TableCell>
+                    }}>Korosztály:</TableCell>
                     <TableCell align="right" sx={{
                         fontSize: 15,
                         width: { xs: "20%", sm: "25%" },
@@ -88,7 +88,7 @@ export default function StoriesTable({ stories, setIsEditStory, setSelectedStory
                     </TableCell>
                     <TableCell align="center" sx={{
                         width: "25%"
-                    }}>{story.copyRight.replaceAll("_", " ")}</TableCell>
+                    }}>{story.ageGroup.replaceAll("_", " ")}</TableCell>
                     <TableCell align="right">
                         <EditIcon
                             onClick={(e) => onEditStory(e, story.publicId)}
